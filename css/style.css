@@ -1,0 +1,331 @@
+/* 
+font-family: 'Abril Fatface', cursive;
+font-family: 'Hind Siliguri', sans-serif;
+font-family: 'Source Code Pro', monospace; 
+*/
+/* -----ESTRUCTURA GENERAL----- */
+*,*::before,*::after, html{
+    padding: 0;
+    margin: 0;
+    font-size: 17px;
+}
+html{
+    height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 3fr 1.5fr;
+    grid-template-rows: 0.5fr 0.4fr 0.1fr 3fr 0.4fr;
+    grid-template-areas: 
+    "header header"
+    "portada portada"
+    "nav nav"
+    "main aside"
+    "footer footer";
+    grid-gap: 0.2rem;       
+}
+header{
+    grid-area: header;
+    font-family: 'Abril Fatface', cursive;  
+}
+.portada{
+    grid-area: portada; 
+}
+nav{
+    grid-area: nav;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    
+}
+main{
+    grid-area: main;
+}
+aside{
+    grid-area: aside;
+    background-color: rgb(241, 241, 241);
+}
+footer{
+    padding: 10px;
+    grid-area: footer;
+    background-color: rgb(238, 205, 96);
+}
+
+/* -----header----- */
+
+.container-header{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "busqueda logo carrito";
+    grid-gap: 0.2rem;
+}
+.busqueda-header{
+    grid-area: busqueda;
+    margin: 15px;
+
+}
+.logo-header{
+    grid-area: logo;
+    text-align: center;
+    padding: 10px 0 0 0;
+}
+#logoTienda{
+    max-width: 150px;
+}
+.carrito-header{
+    grid-area: carrito;
+    padding: 15px;
+    text-align: end;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-end;
+}
+
+/*-boton carrito-*/
+.btn-Carro{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background: #ececec;
+    box-sizing: border-box;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.btn-Carro:hover{
+    transform: translate(-3px);
+    background: #e2f7dc;
+
+}
+.btn-Carro > a{
+    margin-top: 3px;
+}
+
+
+/*-boton Sign in-*/
+.btn-signIN{
+    width: 120px;
+    height: 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    background: #ececec;
+    box-shadow: 0px 8px 15px rgb(0, 0, 0,0.1);
+    transition: all 0.3s ease;
+    color: #6e9e5d; 
+    font-weight: 600;
+} 
+.btn-signIN:hover{
+    background: #9ECC8E;
+    color: rgb(255, 255, 255); 
+    transform: translate(-3px);
+}
+.btn-signIN > a{
+    text-decoration: none; 
+}
+
+/*-botonBuscar-*/
+.icon2{
+    width: 25px;
+}
+.search-box{
+    position: absolute;
+    background-color: #e2f7dc;
+    height: 35px;
+    border-radius: 40px;
+    padding: 5px;
+    box-shadow: 0px 8px 15px rgb(0, 0, 0,0.1);
+}
+.search-box:hover > input{
+width: 120px;
+padding: 0 10px;
+}
+.icon:hover{
+    transform: rotate(360deg)scale(0.8);
+}
+div.search-box > input{
+    width: 0;
+    border: none;
+    outline: none;
+    padding: 0;
+    background: none;
+    font-size: 1.1rem;
+    transition: 0.5s ease;
+    line-height: 40px;
+    color: rgb(78, 78, 78);
+}
+a.icon{
+    float: right;
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    background:  #9ECC8E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+}
+/* ---------- PORTADA ----------- */
+.imgPortada{
+    width: 100%;
+}
+
+
+/* ---------- NAV ----------- */
+
+nav{
+    width: 100%;
+    line-height: 70px;
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+.item{
+    font-size: 1.05rem;
+    clear: right;
+    text-decoration: none;
+    color: rgb(26, 25, 25);
+    margin: 0 5px;
+    line-height: 20px;
+}
+
+.menu a:hover {
+    color: #6e9e5d;
+    font-weight: 600;
+}
+/* menu desplegable */
+
+.nav label {
+    margin: 0 10px 0 0;
+    line-height: 70px;
+    display: none;
+    float: right;
+}
+#toggle { /* icono menu desplegable */
+    display: none;
+}
+.iconos{
+    width: 25px;
+}
+
+
+/* ------section------- */
+
+section {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    /* esta es la manera basica de escribirlo pero la manera abreviada es con el repeat*/
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+article{  
+    background-color: white;
+    border: 1px solid rgb(238, 238, 238);
+    box-sizing: border-box;
+
+}
+img.imgProducto{
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.cajatexto{
+background-color: rgb(248, 248, 248);
+padding: 5px;
+
+}
+.cajaPrecio{
+display: flex;
+justify-content: space-between;
+}
+
+.preu{
+font-size: 1.2rem;
+font-weight: 600;
+padding-bottom: 10px;
+padding-left: 5px;
+}
+.cantidad{
+    width: 40px;
+}
+.nombre{
+font-weight: 600;
+}
+.botonAgregarItem{
+    padding: 1px 5px;
+}
+.textoDescripcion{
+    padding-bottom: 15px;
+    font-size: 0.8rem;
+}
+/* ------carrito------- */
+.imgCarritoSmall{
+    width: 100px;
+}
+
+
+
+/* ------media Queries------ */
+
+@media only screen and (max-width:550px){
+
+    .container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.6fr 0.4fr 3fr 2fr 1fr;
+        grid-template-areas: 
+        "header"
+        "nav"
+        "main"
+        "aside"
+        "footer";
+    }
+
+    /* menu colapsado */
+    nav{
+        justify-content: right;
+
+    }
+    .nav label{
+        display: block;
+        cursor: pointer;
+    }
+    .menu {
+        /* position:static;
+        z-index: 2; */
+        text-align: center;
+        width: 100%;
+        display: none;
+    }
+    .menu .item {
+        position:relative;  /*con esto y z-index he solucionado la posicion del menu desplegable, que al abrirse se visualizaba debajo del main */
+        z-index: 2;
+        display: block;
+        border-bottom: 1px solid #EAEAEB;
+        margin: 0;
+        background-color: #fdfbf4;
+    }
+    #toggle:checked + .menu {
+        display: block;
+    }
+}
+
+
+
+

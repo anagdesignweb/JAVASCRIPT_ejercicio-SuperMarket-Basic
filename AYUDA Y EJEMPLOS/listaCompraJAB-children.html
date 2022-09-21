@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+     <meta charset='utf-8'/>
+     <title>Título de la página</title>
+     <style>
+        img{
+            width:100%;
+        }   
+        .cosa{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        #lista{
+            width:100%;
+            max-width:245px;
+            margin-top:8px;
+            border:1px dotted black;
+            height:calc(100vh - 50px);
+            overflow:auto;
+            padding:7px;
+            box-sizing:border-box;
+        }
+        button img{
+            width:10px;          
+        }
+        .imatge{
+            width:20px;
+        }
+     </style>
+
+<script type='text/javascript'>
+window.onload=inici;
+let productos=[];
+
+
+
+function inici(){
+    document.querySelector("#comprar").onclick=comprar;
+    document.querySelector("#reiniciar").onclick=reiniciar;
+    document.querySelector("#producto").onkeydown=teclado;
+    limpiar();
+    leerDatos();
+}
+function reiniciar(){
+    vaciar();
+    productos=[];
+    localStorage.clear();
+}
+function leerDatos(){
+    let datosLeidos=localStorage.getItem("listaStorage");
+    if (datosLeidos!=null && datosLeidos!==undefined){
+        productos=datosLeidos.split("||*||");
+        escribir();
+    }
+}
+function escribir(){
+    for (let k=0;k<productos.length;k++){        
+        document.querySelector("#lista").insertAdjacentHTML("beforeend",`
+        <div class="cosa" jab="${k}" >
+            <div>${productos[k]}</div>
+            <div class="imatge"><img src="img/basura.png"></div>
+        </div>`);
+        
+        document.querySelectorAll(".imatge")[k].onclick=eliminar;
+    }
+}
+function eliminar(){
+    let hijoABorrar=this.parentNode.getAttribute("jab");
+    productos.splice(hijoABorrar,1);
+    vaciar();
+    escribir();
+    if (productos.length==0){
+        localStorage.clear();
+    } else {
+        guardarDatos();
+    }
+}
+function limpiar(){
+    document.querySelector("#producto").focus();
+    document.querySelector("#producto").value="";
+}
+function vaciar(){
+    document.querySelector("#lista").innerHTML="";
+}
+function teclado(e){
+    let tecla=e.key;
+    if (tecla=="Enter"){
+        comprar();
+    }
+}
+function comprar(){
+    let producto=document.querySelector("#producto").value;
+    let productoOk=producto.toLowerCase().trim();
+
+    if (producto!="" && (productos.indexOf(productoOk)==-1) && producto.includes("||*||")==false){        
+        productos.push(productoOk);
+        guardarDatos();
+        escribir();
+        vaciar();
+    }
+    limpiar();    
+}
+function guardarDatos(){
+    let aGuardar=productos.join("||*||");
+    localStorage.setItem("listaStorage",aGuardar);
+}
+
+
+
+</script>
+</head>
+
+
+<body>
+    <input id="producto" type="text" autocomplete="false" placeholder="Producto a comprar" autofocus spellcheck="false"/>
+    <button id="comprar">Comprar</button>
+    <button id="reiniciar"><img src="img/basura.png"></button>
+    <div id="lista"></div>
+</body>
+</html>
